@@ -3,15 +3,21 @@
 #include "llist.h"
 #include "str_funcs.h"
 
-#define DEFAULT_INPUT "input.txt"
+#define DEFAULT_INPUT "en40k.txt"
 
-enum {
-    default_hash_table_size = 4297 // should be a prime number
+enum
+{
+    default_hash_table_size = 10007 // should be a prime number
 };
 
 int main(int argc, char **argv)
 {
-    char *buffer = file_to_buffer(DEFAULT_INPUT);
+    if (argc != 2)
+    {
+        printf("usage: ...\n");
+        return 1;
+    }
+    char *buffer = file_to_buffer(argv[1]);
     size_t count = 0;
     char **array = split_lines(buffer, &count);
     struct hash_table tbl = (struct hash_table){0};

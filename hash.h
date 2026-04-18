@@ -5,7 +5,12 @@
 #include <stddef.h>
 #include "llist.h"
 
-typedef int (*hash_func_t)(const char *);
+enum
+{
+    crc32_table_len = 256
+};
+
+typedef size_t (*hash_func_t)(const char *);
 
 struct hash_table
 {
@@ -24,5 +29,6 @@ size_t hash_func_first_char(const char *str);
 size_t hash_func_len(const char *str);
 size_t hash_func_ascii_sum(const char *str);
 size_t hash_func_rol(const char *str);
+size_t hash_func_crc32(const char *str);
 
 #endif
